@@ -1,0 +1,5 @@
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+0 16 * * * /home/ubuntu/TM_ShadowsocksR-main/data_limit_info.sh  >> /home/ubuntu/cron_info.log 2>&1
+@monthly /home/ubuntu/TM_ShadowsocksR-main/data_limit_clear.sh  >> /home/ubuntu/cron_clear.log 2>&1
+@reboot /home/ubuntu/TM_ShadowsocksR-main/data_limit_init.sh  >> /home/ubuntu/cron_clear.log 2>&1
