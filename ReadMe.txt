@@ -6,7 +6,19 @@
 #   Thanks: Teddysun <i@teddysun.com>  				  #
 #=================================================================#
 
+# Введение
+Данная инструкция поможет быстро установить и настроить ShadowsocksR Server на VPS сервере. Тестировал на AWS Ubuntu Server 20.04 LTS.
+Дополнительно:
+	Установка и настройка WebMin - быстрой доступ к серверу
+	Установка и настройка Telegram-send - система оповещения (для мониторинга объема сетевого трафика, на основе скриптов выполняемых в cron)
 
+Какой сервер выбрать:
+	AWS EC2 (https://aws.amazon.com/) - Один год бесплатного использования (Ограничения: Только Один VPS, 15ГБ/мес, 750 часов/мес)
+	Amazon Lightsail (https://aws.amazon.com/ru/lightsail/pricing/?opdp1=pricing) - 3,50 USD в месяц, Передача данных: 1 ТБ*
+	Google Cloud Platform(https://console.cloud.google.com/) - один год бесплатного использования + подарок в 400$/год, нет ограничений по трафику
+	Linode (https://cloud.linode.com/) - платный, минум 5$ за 300ГБ/мес
+	
+	
 #1.1 Установка и настройка ShadowsocksR by teddysun (https://www.tipsforchina.com/how-to-setup-a-fast-shadowsocks-server-on-vultr-vps-the-easy-way.html#install)
 	sudo apt-get update && sudo apt-get upgrade -y
 	wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
@@ -64,5 +76,3 @@
 		sudo -s
 		crontab -e	
 		#Скопируйте и добавьте все как в "crontab_example.txt"  (https://devacademy.ru/article/15-otlichnykh-primierov-dlia-sozdaniia-cron-zadach-v-linux)
-	
-
