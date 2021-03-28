@@ -1,9 +1,9 @@
 #=================================================================#
-#   System Required:  Ubuntu 20					                  #
+#   System Required:  Ubuntu 20					  #
 #   Description: ИНструкция для удобства установки и настройки 	  #
-#		ShadowsocksR Server 									  #
+#		ShadowsocksR Server 				  #
 #   Author: Romax911 <Romax911@gmail.com>                         #
-#   Thanks: Teddysun <i@teddysun.com>  						      #
+#   Thanks: Teddysun <i@teddysun.com>  				  #
 #=================================================================#
 
 
