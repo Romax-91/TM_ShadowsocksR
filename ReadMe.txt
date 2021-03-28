@@ -7,7 +7,7 @@
 #=================================================================#
 
 
-#1.1 Установка и настройка ShadowsocksR by teddysun
+#1.1 Установка и настройка ShadowsocksR by teddysun (https://www.tipsforchina.com/how-to-setup-a-fast-shadowsocks-server-on-vultr-vps-the-easy-way.html#install)
 	sudo apt-get update && sudo apt-get upgrade -y
 	wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
 	chmod +x shadowsocksR.sh
@@ -32,7 +32,7 @@
 #1.4 Рестарт SSR server
 	/etc/init.d/shadowsocks restart
 
-#2 Установка и настройка WebMin
+#2 Установка и настройка WebMin (https://wilddiary.com/install-webmin-on-aws-ec2-server/)
 	2.1 Установка
 		wget http://www.webmin.com/download/deb/webmin-current.deb
 		sudo apt-get update
@@ -45,7 +45,7 @@
 		sudo passwd webmin
 
 
-#3 Установка Telegram-send для оповещения
+#3 Установка Telegram-send для оповещения (https://github.com/rahiel/telegram-send)
 	sudo apt install python3-pip
 	sudo pip3 install telegram-send
 	sudo telegram-send --configure
@@ -60,9 +60,9 @@
 	4.2 Запуск скрипта для установки правил по ограничению
 		sudo ./data_limit_init.sh 
 	
-	4.2 Добавление скрипта оповещения и обнуления в cron (Информация каждый день в 19.00(UTC 16.00), сброс статистики каждый месяц в 03.00(UTC 00.00))
+	4.2 Добавление скрипта оповещения и обнуления в cron (Информация каждый день в MSC19.00(UTC 16.00), сброс статистики каждый месяц в MSC03.00(UTC 00.00))
 		sudo -s
 		crontab -e	
-		#Скопируйте и добавьте все как в "crontab_example.txt"
+		#Скопируйте и добавьте все как в "crontab_example.txt"  (https://devacademy.ru/article/15-otlichnykh-primierov-dlia-sozdaniia-cron-zadach-v-linux)
 	
 
