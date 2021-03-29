@@ -26,7 +26,7 @@
 		sudo apt-get update && sudo apt-get upgrade -y
 		wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
 		chmod +x shadowsocksR.sh
-		./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
+		sudo ./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
 
 	#1.2 настройка при установке (Рекомендуемые параметры)
 		1.2.1 - введите пароль
@@ -39,7 +39,7 @@
 		sudo apt-get update && sudo apt-get upgrade -y
 		wget --no-check-certificate https://raw.githubusercontent.com/Romax-91/TM_ShadowsocksR/master/shadowsocksR.sh
 		chmod +x shadowsocksR.sh
-		./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
+		sudo ./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
 
 	#1.4 Изменение настроек подключения 
 		nano /etc/shadowsocks.json
@@ -61,6 +61,7 @@
 
 
 #3 Установка Telegram-send для оповещения (https://github.com/rahiel/telegram-send)
+	sudo -s
 	sudo apt install python3-pip
 	sudo pip3 install telegram-send
 	sudo telegram-send --configure
@@ -96,16 +97,10 @@
 
 
 #SSR Клиенты
+	ShadowsocksR for Windows (Download version 4.9.0, the newer ones have DNS leaks) (https://github.com/shadowsocksrr/shadowsocksr-csharp/releases)
+	ShadowsocksR for Android (https://github.com/shadowsocksrr/shadowsocksr-android/releases)
+	ShadowsocksR for Mac (https://github.com/qinyuhang/ShadowsocksX-NG-R/releases)
+	iOS Potatso Lite (FREE) (https://itunes.apple.com/app/potatso-lite/id1239860606?mt=8)
+	iOS Shadowrocket ($2.99) (https://itunes.apple.com/us/app/shadowrocket/id932747118)
 
-	SSR Clients (recommended for China)
-		ShadowsocksR for Windows (Download version 4.9.0, the newer ones have DNS leaks) (https://github.com/shadowsocksrr/shadowsocksr-csharp/releases)
-		ShadowsocksR for Android (https://github.com/shadowsocksrr/shadowsocksr-android/releases)
-		ShadowsocksR for Mac (https://github.com/qinyuhang/ShadowsocksX-NG-R/releases)
-		iOS Potatso Lite (FREE) (https://itunes.apple.com/app/potatso-lite/id1239860606?mt=8)
-		iOS Shadowrocket ($2.99) (https://itunes.apple.com/us/app/shadowrocket/id932747118)
-
-	Original SS Clients (NOT recommended for China)
-		Shadowsocks for Windows (https://github.com/shadowsocks/shadowsocks-windows/releases)
-		Shadowsocks for Android (https://github.com/shadowsocks/shadowsocks-android/releases)
-		Shadowsocks for Mac (https://github.com/shadowsocks/ShadowsocksX-NG/releases)
 
