@@ -81,6 +81,16 @@
 		crontab -e	
 		#Скопируйте и добавьте все как в "crontab_example.txt"  (https://devacademy.ru/article/15-otlichnykh-primierov-dlia-sozdaniia-cron-zadach-v-linux)
 
+#5 api - Vnstat
+    sudo apt-get update
+    sudo apt install unzip
+
+    wget https://codeload.github.com/Romax-91/TM_ShadowsocksR/zip/refs/heads/main
+	unzip main
+	cd TM_ShadowsocksR-main/api
+
+	chmod +x init.sh restart_api.sh
+
 
 #Команды для ограничения Трафика по сети.
 	!При перезагрузке сбрасываются данные по статистике и по добаленным правилам.

@@ -1,6 +1,7 @@
 import json
 import subprocess
 import configparser
+from hurry.filesize import size
 
 if __name__ == '__main__':
 
@@ -15,7 +16,7 @@ if __name__ == '__main__':
     print("PORT ", port)
 
     limit = config['SETTINGS']['limit']
-    print("LIMIT ", port)
+    print("LIMIT ", limit)
 
     # Port for SSR
     # limit 450 Gb 450 000 000 000
@@ -33,10 +34,14 @@ if __name__ == '__main__':
                     last_h = h
 
             total = last_h['rx'] + last_h['tx']
-            if total >= limit:
+            if total > int(limit):
                 print("iptables block port")
+                print("Total ", size(total))
+                print("Total ", total)
                 # Чтобы заблокировать 443 порт iptables для входящего соединения
                 subprocess.getoutput("iptables -t filter -A INPUT -p tcp --dport {} -j DROP".format(port))
             else:
                 print("iptables unblock")
+                print("Total ", size(total))
+                print("Total ", total)
                 subprocess.getoutput("Iptable -Z INPUT".format(port))

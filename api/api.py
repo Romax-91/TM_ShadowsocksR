@@ -117,13 +117,51 @@ def set_port(p):
     global port
     port = p
 
+    try:
+        config = configparser.ConfigParser()
+        config.read('init.ini')
+        config.set("SETTINGS", "port", port)
+        cfg_file = open("init.ini", 'w')
+
+        config.write(cfg_file)
+        cfg_file.close()
+
+        return {port}
+
+    except Exception as e:
+        return {"error": str(e)}
+
+
+
+@app.get("/limit")
+def limit():
     config = configparser.ConfigParser()
     config.read('init.ini')
-    config.set("SETTINGS", "port", port)
-    cfg_file = open("init.ini", 'w')
 
-    config.write(cfg_file)
-    cfg_file.close()
+    l = config['SETTINGS']['limit']
+    try:
+        return {str(l)}
+
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@app.get("/set-limit/{l}")
+def set_limit(l):
+
+    try:
+        config = configparser.ConfigParser()
+        config.read('init.ini')
+        config.set("SETTINGS", "limit", l)
+        cfg_file = open("init.ini", 'w')
+
+        config.write(cfg_file)
+        cfg_file.close()
+
+        return {l}
+
+    except Exception as e:
+        return {"error": str(e)}
 
 
 @app.get("/h")
