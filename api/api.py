@@ -6,33 +6,29 @@ import configparser
 
 app = FastAPI()
 
-# load default config
-config = configparser.ConfigParser()
-config.read('init.ini')
 
-interface = config['SETTINGS']['interface']
-print("interface ", interface)
+def current_interface():
+    config = configparser.ConfigParser()
+    config.read('init.ini')
+    return config['SETTINGS']['interface']
 
-port = config['SETTINGS']['port']
-print("PORT ", port)
 
-#
-# config.set("SETTINGS", "port", port)
-# config.set("SETTINGS", "interface", interface)
-# cfg_file = open("sample.ini", 'w')
-# config.write(cfg_file)
-# cfg_file.close()
+def current_port():
+    config = configparser.ConfigParser()
+    config.read('init.ini')
+    return config['SETTINGS']['port']
+
 
 # -d: Daily statistics for the last 30 days.
 # -m: Monthly statistics for the past 12 months.
 # -w: Statistics for the last 7 days, and the current and previous week.
 # -h: Hourly statistics for the last 24 hours.
 
-
 @app.get("/")
 def main():
     data = ""
     try:
+        interface = current_interface()
         output = subprocess.getoutput("vnstat --json")
         data = json.loads(output)
         for i in data['interfaces']:
@@ -67,12 +63,8 @@ def interfaces():
 
 @app.get("/interface")
 def interface():
-    config = configparser.ConfigParser()
-    config.read('init.ini')
-
-    interface = config['SETTINGS']['interface']
-
     try:
+        interface = current_interface()
         return {"interface", interface}
 
     except Exception as e:
@@ -81,17 +73,15 @@ def interface():
 
 @app.get("/set-interface/{i}")
 def set_interface(i):
-    global interface
     try:
-        interface = i
         config = configparser.ConfigParser()
         config.read('init.ini')
-        config.set("SETTINGS", "interface", interface)
+        config.set("SETTINGS", "interface", i)
         cfg_file = open("init.ini", 'w')
 
         config.write(cfg_file)
         cfg_file.close()
-        return {interface}
+        return {i}
 
     except Exception as e:
         return {"error": str(e)}
@@ -99,13 +89,8 @@ def set_interface(i):
 
 @app.get("/port")
 def port():
-    config = configparser.ConfigParser()
-    config.read('init.ini')
-
-    port = config['SETTINGS']['port']
-    print("PORT ", port)
-
     try:
+        port = current_port()
         return {str(port)}
 
     except Exception as e:
@@ -114,23 +99,19 @@ def port():
 
 @app.get("/set-port/{p}")
 def set_port(p):
-    global port
-    port = p
-
     try:
         config = configparser.ConfigParser()
         config.read('init.ini')
-        config.set("SETTINGS", "port", port)
+        config.set("SETTINGS", "port", p)
         cfg_file = open("init.ini", 'w')
 
         config.write(cfg_file)
         cfg_file.close()
 
-        return {port}
+        return {p}
 
     except Exception as e:
         return {"error": str(e)}
-
 
 
 @app.get("/limit")
@@ -167,6 +148,7 @@ def set_limit(l):
 @app.get("/h")
 def hour():
     data = ""
+    interface = current_interface()
     try:
         output = subprocess.getoutput("vnstat --json")
         data = json.loads(output)
@@ -182,6 +164,7 @@ def hour():
 @app.get("/d")
 def day():
     data = ""
+    interface = current_interface()
     try:
         output = subprocess.getoutput("vnstat --json")
         data = json.loads(output)
@@ -197,13 +180,12 @@ def day():
 @app.get("/m")
 def month():
     data = ""
+    interface = current_interface()
     try:
         output = subprocess.getoutput("vnstat --json")
         data = json.loads(output)
-        print(interface)
         for i in data['interfaces']:
             if i['name'] == interface:
-                print(i)
                 data = i['traffic']['month']
                 return data
 
@@ -223,9 +205,23 @@ def all_stat():
         return {"error": str(e)}
 
 
+@app.get("/iptables")
+def ip_tables():
+    try:
+        port = current_port()
+        output = subprocess.getoutput("iptables -L -n | grep -i {} ".format(port))
+        return {"iptables": str(output)}
+
+    except Exception as e:
+        return {"error": str(e)}
+
+
 @app.get("/block")
 def block():
     try:
+        interface = current_interface()
+        port = current_port()
+
         subprocess.getoutput("iptables -t filter -A INPUT -p tcp --dport {} -j DROP".format(port))
         return {"msg": "BLOCKING PORT {} on {}".format(port, interface)}
 
@@ -236,6 +232,9 @@ def block():
 @app.get("/unblock")
 def unblock():
     try:
+        interface = current_interface()
+        port = current_port()
+
         subprocess.getoutput("iptables -F")
         return {"msg": "UNBLOCKING PORT {} on {}".format(port, interface)}
 
@@ -252,6 +251,3 @@ async def cmd(c):
 
     except Exception as e:
         return {"error": str(e)}
-
-
-

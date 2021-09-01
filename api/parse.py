@@ -39,9 +39,14 @@ if __name__ == '__main__':
                 print("Total ", size(total))
                 print("Total ", total)
                 # Чтобы заблокировать 443 порт iptables для входящего соединения
+                subprocess.getoutput("Iptable -Z INPUT".format(port))
                 subprocess.getoutput("iptables -t filter -A INPUT -p tcp --dport {} -j DROP".format(port))
             else:
                 print("iptables unblock")
                 print("Total ", size(total))
                 print("Total ", total)
                 subprocess.getoutput("Iptable -Z INPUT".format(port))
+                # subprocess.getoutput("iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport {} -j ACCEPT".format(port))
+                # subprocess.getoutput("iptables -I INPUT -m state --state NEW -m udp -p udp --dport {} -j ACCEPT".format(port))
+                # subprocess.getoutput("/etc/init.d/iptables save")
+                # subprocess.getoutput("/etc/init.d/iptables restart")

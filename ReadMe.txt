@@ -86,10 +86,9 @@
     sudo apt install unzip
 
     wget https://codeload.github.com/Romax-91/TM_ShadowsocksR/zip/refs/heads/main
-	unzip main
-	cd TM_ShadowsocksR-main/api
-
-	chmod +x init.sh restart_api.sh
+    unzip main
+    cd TM_ShadowsocksR-main/api
+    chmod +x init.sh restart_api.sh
 
 
 #Команды для ограничения Трафика по сети.
