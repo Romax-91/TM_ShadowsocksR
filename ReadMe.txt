@@ -7,7 +7,7 @@
 #=================================================================#
 
 
-#1.1 Установка и настройка ShadowsocksR by teddysun
+#1.1 Установка и настройка ShadowsocksR by teddysun 
 	sudo apt-get update && sudo apt-get upgrade -y
 	wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
 	chmod +x shadowsocksR.sh
@@ -24,7 +24,7 @@
 	sudo apt-get update && sudo apt-get upgrade -y
 	wget --no-check-certificate https://raw.githubusercontent.com/Romax-91/TM_ShadowsocksR/master/shadowsocksR.sh
 	chmod +x shadowsocksR.sh
-	./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
+	sudo ./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
 
 #1.3 Изменение настроек подключения 
 	nano /etc/shadowsocks.json
