@@ -200,8 +200,10 @@ def month():
     try:
         output = subprocess.getoutput("vnstat --json")
         data = json.loads(output)
+        print(interface)
         for i in data['interfaces']:
             if i['name'] == interface:
+                print(i)
                 data = i['traffic']['month']
                 return data
 
